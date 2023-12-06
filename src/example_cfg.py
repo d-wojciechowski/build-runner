@@ -1,4 +1,4 @@
-profile: test
+CFG_FILE_CONTENT = """profile: prod
 root: /opt
 fail_on_error: false
 commands:
@@ -21,5 +21,4 @@ suites:
       MPMLink: cst
       MPMLinkCommon: cst
       ProcessPlanBrowser: cst
-    custom:
-      - full
+"""

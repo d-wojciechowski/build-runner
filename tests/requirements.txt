@@ -1,0 +1,4 @@
+pytest
+pytest-cov
+# moved black here to avoid installation issue in docker container
+black
