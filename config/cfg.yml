@@ -1,0 +1,7 @@
+app:
+  profile: test
+  root: /opt
+  input:
+      run_data: ignored/runConfig.xlsx
+      build_order: ignored/compile.includes
+      module_registry: ignored/moduleRegistry.xml
