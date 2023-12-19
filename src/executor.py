@@ -1,4 +1,5 @@
 import subprocess
+import time
 from enum import Enum
 
 import src.constants as const
@@ -21,10 +22,14 @@ class ExecutionStatus(str, Enum):
 
 class Command:
     def __init__(
-        self, command: str, status: ExecutionStatus = ExecutionStatus.PREPARED
+        self, command: str, status: ExecutionStatus = None
     ):
         self.command = command
-        self.status = status
+        if status is None:
+            self.status = ExecutionStatus.PREPARED
+        else:
+            self.status = status
+        self.time = -1
 
     def __repr__(self):
         return f"Command(command={self.command}, status={self.status})"
@@ -202,7 +207,9 @@ class Executor:
         if command.status is not ExecutionStatus.PREPARED:
             return
         command.status = ExecutionStatus.RUNNING
+        start_time = time.time()
         completed_process = subprocess.run(command.command, shell=True)
+        command.time = time.time() - start_time
         if completed_process.returncode != 0:
             command.status = ExecutionStatus.FAILED
             print(

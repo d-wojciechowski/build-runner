@@ -23,7 +23,10 @@ def main():
     Executor(app_cfg, config).run_tasks(tasks)
 
     print("-" * const.COMMAND_SIZE + "\n")
-    print("Application finished successfully")
+    print("Application finished successfully\n")
+    for task in tasks:
+        for command in task.commands:
+            print(f"{command.status} in {command.time:.2f}s - {command.command}")
 
 
 def init_app_cfg() -> AppConfig:
